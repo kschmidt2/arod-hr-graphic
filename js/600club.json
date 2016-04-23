@@ -1,0 +1,253 @@
+[
+  {
+    "age": 18,
+    "Rodriguez": 0
+  },
+  {
+    "age": 19,
+    "Griffey": 16,
+    "Rodriguez": 5,
+    "Ruth": 0
+  },
+  {
+    "age": 20,
+    "Sosa": 4,
+    "Thome": 1,
+    "Griffey": 38,
+    "Mays": 20,
+    "Rodriguez": 41,
+    "Ruth": 4,
+    "Aaron": 13
+  },
+  {
+    "age": 21,
+    "Sosa": 19,
+    "Thome": 3,
+    "Griffey": 60,
+    "Mays": 24,
+    "Rodriguez": 64,
+    "Ruth": 7,
+    "Aaron": 40,
+    "Bonds": 16
+  },
+  {
+    "age": 22,
+    "Sosa": 29,
+    "Thome": 10,
+    "Griffey": 87,
+    "Mays": 24,
+    "Rodriguez": 106,
+    "Ruth": 9,
+    "Aaron": 66,
+    "Bonds": 41
+  },
+  {
+    "age": 23,
+    "Sosa": 37,
+    "Thome": 30,
+    "Griffey": 132,
+    "Mays": 65,
+    "Rodriguez": 148,
+    "Ruth": 20,
+    "Aaron": 110,
+    "Bonds": 65
+  },
+  {
+    "age": 24,
+    "Sosa": 70,
+    "Thome": 55,
+    "Griffey": 172,
+    "Mays": 116,
+    "Rodriguez": 189,
+    "Ruth": 49,
+    "Aaron": 140,
+    "Bonds": 84
+  },
+  {
+    "age": 25,
+    "Sosa": 95,
+    "Thome": 93,
+    "Griffey": 189,
+    "Mays": 152,
+    "Rodriguez": 241,
+    "Ruth": 103,
+    "Aaron": 179,
+    "Bonds": 117
+  },
+  {
+    "age": 26,
+    "Sosa": 131,
+    "Thome": 133,
+    "Griffey": 238,
+    "Mays": 187,
+    "Rodriguez": 298,
+    "Ruth": 162,
+    "Aaron": 219,
+    "Bonds": 142
+  },
+  {
+    "age": 27,
+    "Sosa": 171,
+    "Thome": 163,
+    "Griffey": 294,
+    "Mays": 216,
+    "Rodriguez": 345,
+    "Ruth": 197,
+    "Aaron": 253,
+    "Bonds": 176
+  },
+  {
+    "age": 28,
+    "Sosa": 207,
+    "Thome": 196,
+    "Griffey": 350,
+    "Mays": 250,
+    "Rodriguez": 381,
+    "Ruth": 238,
+    "Aaron": 298,
+    "Bonds": 222
+  },
+  {
+    "age": 29,
+    "Sosa": 273,
+    "Thome": 233,
+    "Griffey": 398,
+    "Mays": 279,
+    "Rodriguez": 429,
+    "Ruth": 284,
+    "Aaron": 342,
+    "Bonds": 259
+  },
+  {
+    "age": 30,
+    "Sosa": 336,
+    "Thome": 282,
+    "Griffey": 438,
+    "Mays": 319,
+    "Rodriguez": 464,
+    "Ruth": 309,
+    "Aaron": 366,
+    "Bonds": 292
+  },
+  {
+    "age": 31,
+    "Sosa": 386,
+    "Thome": 334,
+    "Griffey": 460,
+    "Mays": 368,
+    "Rodriguez": 518,
+    "Ruth": 356,
+    "Aaron": 398,
+    "Bonds": 334
+  },
+  {
+    "age": 32,
+    "Sosa": 450,
+    "Thome": 381,
+    "Griffey": 468,
+    "Mays": 406,
+    "Rodriguez": 553,
+    "Ruth": 416,
+    "Aaron": 442,
+    "Bonds": 374
+  },
+  {
+    "age": 33,
+    "Sosa": 499,
+    "Thome": 423,
+    "Griffey": 481,
+    "Mays": 453,
+    "Rodriguez": 583,
+    "Ruth": 470,
+    "Aaron": 481,
+    "Bonds": 411
+  },
+  {
+    "age": 34,
+    "Sosa": 539,
+    "Thome": 430,
+    "Griffey": 501,
+    "Mays": 505,
+    "Rodriguez": 613,
+    "Ruth": 516,
+    "Aaron": 510,
+    "Bonds": 445
+  },
+  {
+    "age": 35,
+    "Sosa": 574,
+    "Thome": 472,
+    "Griffey": 536,
+    "Mays": 542,
+    "Rodriguez": 629,
+    "Ruth": 565,
+    "Aaron": 554,
+    "Bonds": 494
+  },
+  {
+    "age": 36,
+    "Sosa": 588,
+    "Thome": 507,
+    "Griffey": 563,
+    "Mays": 564,
+    "Rodriguez": 647,
+    "Ruth": 611,
+    "Aaron": 592,
+    "Bonds": 567
+  },
+  {
+    "age": 37,
+    "Sosa": 588,
+    "Thome": 541,
+    "Griffey": 593,
+    "Mays": 587,
+    "Rodriguez": 654,
+    "Ruth": 652,
+    "Aaron": 639,
+    "Bonds": 613
+  },
+  {
+    "age": 38,
+    "Sosa": 609,
+    "Thome": 564,
+    "Griffey": 611,
+    "Mays": 600,
+    "Rodriguez": 654,
+    "Ruth": 686,
+    "Aaron": 673,
+    "Bonds": 658
+  },
+  {
+    "age": 39,
+    "Thome": 589,
+    "Griffey": 630,
+    "Mays": 628,
+    "Rodriguez": 687,
+    "Ruth": 708,
+    "Aaron": 713,
+    "Bonds": 703
+  },
+  {
+    "age": 40,
+    "Thome": 604,
+    "Griffey": 630,
+    "Mays": 646,
+    "Rodriguez": 689,
+    "Ruth": 714,
+    "Aaron": 733,
+    "Bonds": 708
+  },
+  {
+    "age": 41,
+    "Thome": 612,
+    "Mays": 654,
+    "Aaron": 745,
+    "Bonds": 734
+  },
+  {
+    "age": 42,
+    "Mays": 660,
+    "Aaron": 755,
+    "Bonds": 762
+  }
+]

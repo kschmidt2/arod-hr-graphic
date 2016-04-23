@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+        <title>Alex Rodriguez's 689 homs runs</title>
+
+        <!-- css -->
+        <link rel="stylesheet" href="css/bootstrap.css" />
+        <link rel="stylesheet" href="css/angular-tooltip.css" />
+        <link rel="stylesheet" href="css/custom.css" />
+<link href='https://fonts.googleapis.com/css?family=Oswald:400,300,700|Roboto+Slab:400,300|Open+Sans:300,400,700,400italic' rel='stylesheet' type='text/css'>        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+        <!-- jquery -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+        <!-- fixed sidebar -->
+        <script src="js/bootstrap.min.js"></script>
+
+        <!-- angular -->
+        <script src="js/angular.min.js"></script>
+    </head>
+
+    <!-- <body ng-app="myApp"> -->
+    <body ng-app="myApp">
+
+      <div class="jumbotron">
+        <div class="jumbotron-container">
+          <div class="headline">
+            <h1>Alex</br /><span class="rod">Rodriguez</span></h1>
+            <h2>689 home runs and counting</h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+
+        <p class="intro">
+          Alex Rodriguez currently sits in fourth place on the all-time home run list behind Barry Bonds, Hank Aaron and Babe Ruth. The Yankee designated hitter has a chance to pass Ruth before his career ends following the 2018 season, but will need to do some work to catch Aaron or Bonds. The chart below shows all of Rodriguez's career home runs. Hover over the dots to view details about each home run and click the buttons below to filter the home runs by type or team.
+        </p>
+
+        <div class="legend">
+          <ul>
+            <li class="legend-items"><div class="dot rbi1"></div>solo</span>
+            <li class="legend-items"><div class="dot rbi2"></div>two-run</span>
+            <li class="legend-items"><div class="dot rbi3"></div>three-run</span>
+            <li class="legend-items"><div class="dot rbi4"></div>grand slam</span>
+          </ul>
+        </div>
+
+        <div id="dot-chart" ng-controller="ARodController as arod">
+
+          <div class="row" id="buttons">
+              <button class="btn btn-default" type="submit" ng-click="myFilter = {}">All HR</button>
+              <button class="btn btn-default" type="submit" ng-click="myFilter = {rbi: '1'}">Solo HR</button>
+              <button class="btn btn-default" type="submit" ng-click="myFilter = {rbi: '2'}">Two-run HR</button>
+              <button class="btn btn-default" type="submit" ng-click="myFilter = {rbi: '3'}">three-run HR</button>
+              <button class="btn btn-default" type="submit" ng-click="myFilter = {rbi: '4'}">Grand slams</button>
+              <button class="btn btn-default" type="submit" ng-click="myFilter = {team: 'SEA'}">SEA HR</button>
+              <button class="btn btn-default" type="submit" ng-click="myFilter = {team: 'TEX'}">TEX HR</button>
+              <button class="btn btn-default" type="submit" ng-click="myFilter = {team: 'NYY'}">NYY HR</button>
+          </div>
+
+          <form>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-addon"><i class="fa fa-search"></i></div>
+
+                <input type="text" class="form-control" placeholder="Search by team, opposing pitcher or year" ng-model="searchHomeruns">
+
+              </div>
+            </div>
+          </form>
+
+          <div class="dot rbi{{homerun.rbi}}" ng-repeat="homerun in arod.homeruns | filter:myFilter | filter: searchHomeruns" tooltips
+          tooltip-template="
+            <b>HR number:</b> {{homerun.hrnumber}}<br />
+            <b>Date:</b> {{homerun.date}}<br />
+            <b>Team:</b> {{homerun.team}}<br />
+            <b>Opponent:</b> {{homerun.opponent}}<br />
+            <b>Opposing pitcher:</b> {{homerun.pitcher}}<br />
+            <b>Score:</b> {{homerun.score}}<br />
+            <b>Inning:</b> {{homerun.inning}}<br />
+            <b>Outs:</b> {{homerun.out}}<br />
+          ">
+            <!-- <a ng-click="senate.getInfo(seat.name)"><img ng-src="{{seat.background}}" class="img-responsive-icons {{seat.open}} {{seat.incumbent.party}}"></a> -->
+          </div>
+
+        </div>
+
+        <div class="row show-grid charts">
+          <div class="col-xs-12 col-sm-8">
+            <h3>The 600 Home Run Club: Cumulative home runs by age</h3>
+            <!-- <div id="line-chart"></div> -->
+          </div>
+          <div class="col-xs-12 col-sm-4">
+            <div class="row show-grid">
+              <div class="col-xs-12">
+                <h3>Rodriguez's home runs by season</h>
+              </div>
+              <div class="col-xs-12">
+                <h3>Rodriguez's home runs by team</h>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+<!--
+      <div id="banner">
+        <img src="images/banner.png" class="img-responsive banner-image"></img>
+      </div>
+
+        <div class="container" ng-controller="SenateController as senate">
+
+          <div id="headbox">
+            <a href="index.html"><h1>Racing for the Senate</h1></a>
+            <h2>With Republicans holding 24 of the 34 seats up for re-election in November,
+            Democrats will be looking to win back the control of the Senate they lost in 2014.
+            Currently at 46 seats, they will need to win four more to gain control if a Democrat
+            is elected president, or five more if a Republican wins the White House. Use the table
+            below to view who is up for re-election this year and detailed information about each
+            of the 34 races.</h2>
+          </div>
+
+          <div class="row" id="buttons">
+            <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 align-left">
+              <button class="btn btn-default" type="submit" ng-click="myFilter = {}">All seats</button>
+              <button class="btn btn-default" type="submit" ng-click="myFilter = {open: 'open'}">Open seats</button>
+              <button class="btn btn-default" type="submit" ng-click="myFilter = {open: 'closed'}">Closed seats</button>
+              <button class="btn btn-default" type="submit" ng-click="myFilter = {incumbent: 'Republican'}">Republican seats</button>
+              <button class="btn btn-default" type="submit" ng-click="myFilter = {incumbent: 'Democrat'}">Democratic seats</button>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 align-right">
+              <form>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="fa fa-search"></i></div>
+
+                    <input type="text" class="form-control" placeholder="Search by seat" ng-model="searchSeats">
+
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div id="key">
+            <ul>
+              <li class="openrep">Open Republican Seat</li>
+              <li class="closedrep">Closed Republican Seat</li>
+              <li class="opendem">Open Democratic Seat</li>
+              <li class="closeddem">Closed Democratic Seat</li>
+              <li class="openind">Open Independent Seat</li>
+              <li class="closedind">Closed Independent Seat</li>
+          </div>
+
+
+          <div class="row padding-top">
+            <div class="col-xs-12 col-sm-4">
+              <div id="sidebar" data-spy="affix">
+                Click on a Senate seat to view information about the current senator as well as information about the race for the seats which are contested.
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-8" id="main">
+              <div id="mainbar">
+                <div class="seat-tile" ng-repeat="seat in senate.seats | filter:myFilter | filter:{name: searchSeats}">
+                  <a ng-click="senate.getInfo(seat.name)"><img ng-src="{{seat.background}}" class="img-responsive-icons {{seat.open}} {{seat.incumbent.party}}"></a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div> -->
+
+
+        <!-- myApp -->
+        <script src="js/angular-tooltip.min.js"></script>
+        <script src="js/app.js"></script>
+
+        <!-- d3 library -->
+        <script src="js/d3.min.js"></script>
+        <!-- d3 tooltip -->
+        <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+        <!-- d3 linechart -->
+        <!-- <script src="js/linechart.js"></script> -->
+
+        <!-- additional js -->
+        <!-- <script type="text/javascript" src="js/script.js"></script> -->
+
+    </body>
+</html>

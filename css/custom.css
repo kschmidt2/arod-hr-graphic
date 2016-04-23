@@ -1,0 +1,192 @@
+/*#3f4a6a*/
+
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.jumbotron {
+  height: 450px;
+  background-image: linear-gradient(rgba(0,0,0,0.0), rgba(0,0,0,0.5)), url('../images/arodcover.jpg');
+  background-position: center 48%;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.jumbotron-container {
+  margin-right: 15%;
+  margin-left: 20%;
+}
+
+.headline {
+  text-align: center;
+  float: right;
+  width: 70%;
+  color: white;
+  margin-top: 55px;
+  /*font-family: 'Oswald', sans-serif;*/
+}
+
+h1 {
+  text-transform: uppercase;
+  font-weight: 400;
+  text-shadow: 0px 0px 10px rgba(0, 0, 0, 1.0);
+  font-size: 75px;
+  line-height: 65px;
+  letter-spacing: 10px;
+}
+
+h2 {
+  font-family: 'Roboto Slab', serif;
+  font-weight: 300;
+  margin-top: 0;
+  font-size: 24px;
+  line-height: 20px;
+  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
+}
+
+.container {
+  text-align: center;
+}
+
+.intro {
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 10px;
+}
+
+.legend {
+  margin: 0 auto;
+}
+
+.legend ul {
+  list-style: none;
+}
+
+.legend ul li {
+  padding-left: 0;
+  display: inline-block;
+}
+
+.dot {
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  margin: 0 3px 6px;
+  float: left;
+  background-color: black;
+}
+
+#dot-chart .dot:hover {
+  background-color: #d4c9af;
+  border: 0;
+}
+
+.rbi1 {
+  background-color: #fff;
+  border: 1px solid #0c152d;
+}
+
+.rbi2 {
+  background-color: #cfd7e9;
+}
+
+.rbi3 {
+  background-color: #637293;
+}
+
+.rbi4 {
+  background-color: #0c152d;
+}
+
+.legend-items {
+  font-size: 12px;
+  margin-right: 20px;
+  /*float: left;*/
+  line-height: 10px;
+}
+
+#dot-chart {
+  margin-top: 20px;
+}
+
+#buttons {
+  margin-bottom: 15px;
+  margin-top: -15px;
+}
+
+.btn-default {
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #0c152d;
+  border: 1px solid #0c152d;
+  border-radius: 0;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.btn-default:hover {
+  color: #0c152d;
+  border: 1px solid #0c152d;
+  background-color: #cfd7e9;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.charts {
+  margin-top: 50px;
+}
+
+h3 {
+  font-family: 'Roboto Slab', serif;
+  font-size: 18px;
+  margin-top: 0;
+  color: #0c152d;
+}
+
+@media screen and (min-width: 768px) {
+  .jumbotron h1 {
+    font-size: 75px;
+  }
+  .container {
+    width: 850px;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .jumbotron {
+    height: 100vh;
+    background-image: linear-gradient(rgba(0,0,0,0.0), rgba(0,0,0,0.9)), url('../images/arodcover.jpg');
+    background-position: 10% 80%;
+    background-attachment: fixed;
+  }
+  .jumbotron-container {
+    margin-right: 5%;
+    margin-left: 5%;
+  }
+
+  .headline {
+    text-align: center;
+    float: none;
+    width: 100%;
+    color: white;
+    margin-top: 70vh;
+  }
+  h1 {
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 55px;
+    line-height: 47px;
+    letter-spacing: 0px;
+  }
+
+  h2 {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 400;
+    margin-top: 0;
+    font-size: 20px;
+    line-height: 16px;
+  }
+}
