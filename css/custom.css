@@ -88,10 +88,6 @@ h2 {
   background-color: black;
 }
 
-#many-dots {
-  overflow-x: hidden;
-}
-
 #dot-chart .dot:hover {
   background-color: #d4c9af;
   border: 0;
@@ -317,6 +313,9 @@ circle:hover {
   }
   .pie-head {
     margin-top: 0px;
+  }
+  #many-dots {
+    overflow-x: hidden;
   }
 }
 
