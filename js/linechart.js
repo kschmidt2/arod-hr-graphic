@@ -112,7 +112,7 @@ d3.json('js/600club.json', function(error, data) {
       .style("stroke", function(d) { return color3(d.name); })
       // .style("fill", "none")
       .on('mouseover', function(){
-        d3.select(this).style({"stroke":"#97a6c4"});;
+        d3.select(this).style({"stroke":"#d4c9af"});;
       })
       .on('mouseout', function(){
         d3.select(this).style("stroke", function(d) { return color3(d.name); });;
@@ -130,9 +130,6 @@ d3.json('js/600club.json', function(error, data) {
             .attr("cx", line.x())
             .attr("cy", line.y())
             // .defined(function(d) { return !isNaN(d.homeruns); })
-      			.style("stroke", "#0c152d")
-      			.style("fill", "white")
-      			.style("stroke-width", "1px")
             .on('mouseover', tipLine.show)
             .on('mouseout', tipLine.hide);
 

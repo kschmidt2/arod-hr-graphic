@@ -191,11 +191,22 @@ h3 {
 }
 
 .g:hover .bar {
-  fill: #0c152d;
+  fill: #d4c9af;
 }
 
 .arc path:hover {
   fill-opacity: 0.5;
+}
+
+circle {
+  fill: #fff;
+  stroke: #0c152d;
+  stroke-width: 1px;
+}
+
+circle:hover {
+  fill: #d4c9af;
+  stroke: #d4c9af;
 }
 
 .pie-chart {
