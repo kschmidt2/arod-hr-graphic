@@ -1,13 +1,25 @@
 [
   {
     "age": 18,
-    "Rodriguez": 0
+    "Sosa": 0,
+    "Thome": 0,
+    "Griffey": 0,
+    "Mays": 0,
+    "Rodriguez": 0,
+    "Ruth": 0,
+    "Aaron": 0,
+    "Bonds": 0
   },
   {
     "age": 19,
+    "Sosa": 0,
+    "Thome": 0,
     "Griffey": 16,
+    "Mays": 0,
     "Rodriguez": 5,
-    "Ruth": 0
+    "Ruth": 0,
+    "Aaron": 0,
+    "Bonds": 0
   },
   {
     "age": 20,
@@ -17,7 +29,8 @@
     "Mays": 20,
     "Rodriguez": 41,
     "Ruth": 4,
-    "Aaron": 13
+    "Aaron": 13,
+    "Bonds": 0
   },
   {
     "age": 21,

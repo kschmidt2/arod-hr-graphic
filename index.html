@@ -12,13 +12,14 @@
         <link rel="stylesheet" href="css/bootstrap.css" />
         <link rel="stylesheet" href="css/angular-tooltip.css" />
         <link rel="stylesheet" href="css/custom.css" />
-<link href='https://fonts.googleapis.com/css?family=Oswald:400,300,700|Roboto+Slab:400,300|Open+Sans:300,400,700,400italic' rel='stylesheet' type='text/css'>        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link href='https://fonts.googleapis.com/css?family=Oswald:400,300,700|Roboto+Slab:400,300|Open+Sans:300,400,700,400italic' rel='stylesheet' type='text/css'>        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+        <!-- favicon -->
+        <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
 
         <!-- jquery -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-
-        <!-- fixed sidebar -->
-        <script src="js/bootstrap.min.js"></script>
 
         <!-- angular -->
         <script src="js/angular.min.js"></script>
@@ -91,94 +92,38 @@
 
         </div>
 
-        <div class="row show-grid charts">
-          <div class="col-xs-12 col-sm-8">
-            <h3>The 600 Home Run Club: Cumulative home runs by age</h3>
-            <!-- <div id="line-chart"></div> -->
-          </div>
-          <div class="col-xs-12 col-sm-4">
+        <div class="row charts">
+          <div class="col-xs-12 col-sm-12">
             <div class="row show-grid">
-              <div class="col-xs-12">
-                <h3>Rodriguez's home runs by season</h>
+              <div class="col-xs-12 col-sm-9">
+                <h3>Rodriguez's home runs by season</h3>
+                <div id="season-chart"></div>
               </div>
-              <div class="col-xs-12">
-                <h3>Rodriguez's home runs by team</h>
+              <div class="col-xs-12 col-sm-3">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <h3>Rodriguez's home runs by team</h3>
+                    <div id="team-chart"></div>
+                  </div>
+                  <div class="col-xs-12">
+                    <h3 style="margin-top:20px;">Rodriguez's home runs by position</h3>
+                    <div id="position-chart"></div>
+                  </div>
+                </div>
               </div>
             </div>
+          </div>
+          <div class="col-xs-12 col-sm-12 hidden-xs hidden-sm hidden-md hidden-lg hidden-xl">
+            <h3>The 600 Home Run Club: Cumulative home runs by age</h3>
+            <div id="line-chart"></div>
           </div>
         </div>
 
+        <div id="footer">
+          Charts by <a href="http://kierstenschmidt.com" target="blank">Kiersten Schmidt</a>. Created using AngularJS and d3js. Data from <a href="http://baseball-reference.com" target="blank">Baseball Reference</a>. Photo via AP.
+        </div>
+
       </div>
-
-
-<!--
-      <div id="banner">
-        <img src="images/banner.png" class="img-responsive banner-image"></img>
-      </div>
-
-        <div class="container" ng-controller="SenateController as senate">
-
-          <div id="headbox">
-            <a href="index.html"><h1>Racing for the Senate</h1></a>
-            <h2>With Republicans holding 24 of the 34 seats up for re-election in November,
-            Democrats will be looking to win back the control of the Senate they lost in 2014.
-            Currently at 46 seats, they will need to win four more to gain control if a Democrat
-            is elected president, or five more if a Republican wins the White House. Use the table
-            below to view who is up for re-election this year and detailed information about each
-            of the 34 races.</h2>
-          </div>
-
-          <div class="row" id="buttons">
-            <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 align-left">
-              <button class="btn btn-default" type="submit" ng-click="myFilter = {}">All seats</button>
-              <button class="btn btn-default" type="submit" ng-click="myFilter = {open: 'open'}">Open seats</button>
-              <button class="btn btn-default" type="submit" ng-click="myFilter = {open: 'closed'}">Closed seats</button>
-              <button class="btn btn-default" type="submit" ng-click="myFilter = {incumbent: 'Republican'}">Republican seats</button>
-              <button class="btn btn-default" type="submit" ng-click="myFilter = {incumbent: 'Democrat'}">Democratic seats</button>
-            </div>
-
-            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 align-right">
-              <form>
-                <div class="form-group">
-                  <div class="input-group">
-                    <div class="input-group-addon"><i class="fa fa-search"></i></div>
-
-                    <input type="text" class="form-control" placeholder="Search by seat" ng-model="searchSeats">
-
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-
-          <div id="key">
-            <ul>
-              <li class="openrep">Open Republican Seat</li>
-              <li class="closedrep">Closed Republican Seat</li>
-              <li class="opendem">Open Democratic Seat</li>
-              <li class="closeddem">Closed Democratic Seat</li>
-              <li class="openind">Open Independent Seat</li>
-              <li class="closedind">Closed Independent Seat</li>
-          </div>
-
-
-          <div class="row padding-top">
-            <div class="col-xs-12 col-sm-4">
-              <div id="sidebar" data-spy="affix">
-                Click on a Senate seat to view information about the current senator as well as information about the race for the seats which are contested.
-              </div>
-            </div>
-            <div class="col-xs-12 col-sm-8" id="main">
-              <div id="mainbar">
-                <div class="seat-tile" ng-repeat="seat in senate.seats | filter:myFilter | filter:{name: searchSeats}">
-                  <a ng-click="senate.getInfo(seat.name)"><img ng-src="{{seat.background}}" class="img-responsive-icons {{seat.open}} {{seat.incumbent.party}}"></a>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-        </div> -->
 
 
         <!-- myApp -->
@@ -189,11 +134,10 @@
         <script src="js/d3.min.js"></script>
         <!-- d3 tooltip -->
         <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+        <!-- d3 barchart and pie charts -->
+        <script src="js/barchart.js"></script>
         <!-- d3 linechart -->
         <!-- <script src="js/linechart.js"></script> -->
-
-        <!-- additional js -->
-        <!-- <script type="text/javascript" src="js/script.js"></script> -->
 
     </body>
 </html>

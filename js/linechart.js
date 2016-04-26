@@ -1,7 +1,7 @@
 // margins
 var margin = {top: 20, right: 80, bottom: 30, left: 50},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    width = 860 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
 
 // define scales
 var x = d3.time.scale()
@@ -22,13 +22,18 @@ var yAxis = d3.svg.axis()
     .scale(y)
     .orient("left");
 
+// define colors
+var color = d3.scale.ordinal()
+.domain(["Sosa","Thome","Griffey","Mays","Rodriguez","Ruth","Aaron","Bonds"])
+.range(["#bbb", "#bbb", "#bbb", "#bbb", "#0c152d", "#bbb", "#bbb", "#bbb"]);
+
 // define line
 var line = d3.svg.line()
-    .interpolate("basis")
     .x(function(d) { return x(d.age); })
-    .y(function(d) { return y(d.homeruns); });
+    .y(function(d) { return y(d.homeruns); })
+    .defined(function(d) { return !isNaN(d.homeruns); });;
 
-var svg = d3.select("body").append("svg")
+var svg = d3.select("#line-chart").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
@@ -51,12 +56,23 @@ d3.json('js/600club.json', function(err, data) {
     };
   });
 
-  x.domain(d3.extent(data, function(d) { return d.age; }));
+
+  x.domain(d3.extent(data, function(d) { return d.age;}));
 
   y.domain([
     d3.min(players, function(c) { return d3.min(c.values, function(v) { return v.homeruns; }); }),
     d3.max(players, function(c) { return d3.max(c.values, function(v) { return v.homeruns; }); })
   ]);
+
+  var tipLine = d3.tip()
+      .attr('class', 'd3-tip')
+      .offset([300, -250])
+      .html(function(d) {
+        console.log(d);
+        return "Player<br />Age:<br />Age:<br />Age:<br />Age:<br />Age:<br />Age:<br />Age:<br />Age:<br />Age:<br />Age:<br />Age:<br />Age:<br />Age:<br />Age:<br />Age:<br />Age:<br />Age:<br />Age:<br />Age:<br />Age:<br />Age:<br />";
+      })
+
+  svg.call(tipLine);
 
   svg.append("g")
       .attr("class", "x axis")
@@ -73,22 +89,43 @@ d3.json('js/600club.json', function(err, data) {
       .style("text-anchor", "end")
       .text("Home runs");
 
-  var city = svg.selectAll(".player")
+  var player = svg.selectAll(".player")
       .data(players)
     .enter().append("g")
       .attr("class", "player");
 
-  city.append("path")
+
+
+  player.append("path")
       .attr("class", "line")
       .attr("d", function(d) { return line(d.values); })
-      .style("stroke", function(d) { return color(d.name); });
+      .style("stroke", function(d) { return color(d.name); })
+      .style("fill", "none")
+      .on('mouseover', function(){
+        d3.select(this).style({"stroke":"#97a6c4"});;
+        tipLine.show(this);
+      })
+      .on('mouseout', function(){
+        d3.select(this).style("stroke", function(d) { return color(d.name); });;
+        tipLine.hide(this);
+      });
 
-  city.append("text")
-      .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; })
-      .attr("transform", function(d) { return "translate(" + x(d.value.age) + "," + y(d.value.homeruns) + ")"; })
-      .attr("x", 3)
-      .attr("dy", ".35em")
-      .text(function(d) { return d.name; });
+      player.selectAll(".player")
+            .data(data.filter(function(d) { return !isNaN(d.homeruns); }))
+        .enter().append("circle")
+            .attr("r", 2)
+            .attr("cx", line.x())
+            .attr("cy", line.y())
+            .on('mouseover', tipLine.show)
+            .on('mouseout', tipLine.hide);
+
+
+  // player.append("text")
+  //     .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; })
+  //     .attr("transform", function(d) { return "translate(" + x(d.value.age) + "," + y(d.value.homeruns) + ")"; })
+  //     .attr("x", 3)
+  //     .attr("dy", ".35em")
+  //     .text(function(d) { return d.name; });
 });
 
 
