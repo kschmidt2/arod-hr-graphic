@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 
-        <title>Alex Rodriguez's 689 homs runs</title>
+        <title>Alex Rodriguez's 689 home runs</title>
 
         <!-- css -->
         <link rel="stylesheet" href="css/bootstrap.css" />
@@ -95,7 +95,7 @@
             <div class="dot rbi{{homerun.rbi}}" ng-repeat="homerun in arod.homeruns | filter:myFilter | filter: searchHomeruns" tooltips
             tooltip-template="
               <b>HR number:</b> {{homerun.hrnumber}}<br />
-              <b>Date:</b> {{homerun.date}}<br />
+              <b>Date:</b> {{homerun.date  | date :cshortDate}}<br />
               <b>Team:</b> {{homerun.team}}<br />
               <b>Opponent:</b> {{homerun.opponent}}<br />
               <b>Opposing pitcher:</b> {{homerun.pitcher}}<br />
