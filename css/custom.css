@@ -24,7 +24,12 @@ body {
   width: 70%;
   color: white;
   margin-top: 55px;
-  /*font-family: 'Oswald', sans-serif;*/
+}
+
+.mobile-headline {
+  color: #3f4b6a;
+  margin: 5px auto 35px;
+  text-align: center;
 }
 
 h1 {
@@ -43,6 +48,15 @@ h2 {
   font-size: 24px;
   line-height: 20px;
   text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
+}
+
+.mobile-headline h1, .mobile-headline h2 {
+  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.0);
+}
+
+.mobile-headline h1 {
+  font-size: 55px;
+  line-height: 45px;
 }
 
 .container {
@@ -73,8 +87,12 @@ h2 {
   width: 10px;
   border-radius: 50%;
   margin: 0 3px 6px;
-  float: left;
+  display: inline-block;
   background-color: black;
+}
+
+#many-dots {
+  overflow-x: hidden;
 }
 
 #dot-chart .dot:hover {
@@ -288,23 +306,9 @@ circle:hover {
 
 @media screen and (max-width: 414px) {
   .jumbotron {
-    height: 100vh;
-    background-image: linear-gradient(rgba(0,0,0,0.0) 30%, rgba(0,0,0,0.9)), url('../images/arodcover.jpg');
-    background-position: 15% 20%;
-    background-attachment: fixed;
-  }
-  .jumbotron-container {
-    margin-right: 5%;
-    margin-left: 5%;
+    display: none;
   }
 
-  .headline {
-    text-align: center;
-    float: none;
-    width: 100%;
-    color: white;
-    margin-top: 70vh;
-  }
   h2 {
     font-family: 'Roboto Slab', serif;
     font-weight: 400;

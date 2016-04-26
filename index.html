@@ -28,13 +28,27 @@
     <!-- <body ng-app="myApp"> -->
     <body ng-app="myApp">
 
-      <div class="jumbotron">
+      <div class="jumbotron hidden-xs">
         <div class="jumbotron-container">
           <div class="headline">
             <h1>Alex</br /><span class="rod">Rodriguez</span></h1>
             <h2>689 home runs and counting</h2>
           </div>
         </div>
+      </div>
+
+      <!-- <div class="mobile-jumbotron">
+        <div class="mobile-headline">
+          <h1>Alex</br /><span class="rod">Rodriguez</span></h1>
+          <h2>689 home runs and counting</h2>
+        </div>
+      </div> -->
+
+      <img src="images/arodcover_small.jpg" class="img-responsive hidden-sm hidden-md hidden-lg hidden-xl">
+
+      <div class="mobile-headline hidden-sm hidden-md hidden-lg hidden-xl">
+        <h1>Alex</br />Rodriguez</h1>
+        <h2>689 home runs and counting</h2>
       </div>
 
       <div class="container">
@@ -76,25 +90,28 @@
             </div>
           </form>
 
-          <div class="dot rbi{{homerun.rbi}}" ng-repeat="homerun in arod.homeruns | filter:myFilter | filter: searchHomeruns" tooltips
-          tooltip-template="
-            <b>HR number:</b> {{homerun.hrnumber}}<br />
-            <b>Date:</b> {{homerun.date}}<br />
-            <b>Team:</b> {{homerun.team}}<br />
-            <b>Opponent:</b> {{homerun.opponent}}<br />
-            <b>Opposing pitcher:</b> {{homerun.pitcher}}<br />
-            <b>Score:</b> {{homerun.score}}<br />
-            <b>Inning:</b> {{homerun.inning}}<br />
-            <b>Outs:</b> {{homerun.out}}<br />
-          ">
-            <!-- <a ng-click="senate.getInfo(seat.name)"><img ng-src="{{seat.background}}" class="img-responsive-icons {{seat.open}} {{seat.incumbent.party}}"></a> -->
+          <div id="many-dots">
+
+            <div class="dot rbi{{homerun.rbi}}" ng-repeat="homerun in arod.homeruns | filter:myFilter | filter: searchHomeruns" tooltips
+            tooltip-template="
+              <b>HR number:</b> {{homerun.hrnumber}}<br />
+              <b>Date:</b> {{homerun.date}}<br />
+              <b>Team:</b> {{homerun.team}}<br />
+              <b>Opponent:</b> {{homerun.opponent}}<br />
+              <b>Opposing pitcher:</b> {{homerun.pitcher}}<br />
+              <b>Score:</b> {{homerun.score}}<br />
+              <b>Inning:</b> {{homerun.inning}}<br />
+              <b>Outs:</b> {{homerun.out}}<br />
+            ">
+            </div>
+
           </div>
 
         </div>
 
         <div class="row charts">
           <div class="col-xs-12 col-sm-12">
-            <div class="row show-grid">
+            <div class="row">
               <div class="col-xs-12 col-sm-9">
                 <h3>Rodriguez's home runs by season</h3>
                 <p class="description-text">Rodriguez's home run production peaked during his years in Texas. <span class="hidden-xs">Hover over</span><span class="hidden-sm hidden-md hidden-lg hidden-xl">Click on</span> the chart to view his home runs by season.</p>
@@ -128,7 +145,7 @@
                 <button type="button" class="btn btn-primary active" id="Mays-button" data-toggle="button" aria-pressed="true" autocomplete="off">Mays</button>
                 <button type="button" class="btn btn-primary active" id="Ruth-button" data-toggle="button" aria-pressed="true" autocomplete="off">Ruth</button>
                 <button type="button" class="btn btn-primary active" id="Aaron-button" data-toggle="button" aria-pressed="true" autocomplete="off">Aaron</button>
-                <button type="button" class="btn btn-primary active Bonds-button" data-toggle="button" aria-pressed="true" autocomplete="off">Bonds</button>
+                <button type="button" class="btn btn-primary active" id="Bonds-button" data-toggle="button" aria-pressed="true" autocomplete="off">Bonds</button>
             </div>
 
             <div id="line-chart"></div>
