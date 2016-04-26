@@ -30,7 +30,7 @@ var yAxisLeft = d3.svg.axis()
     .tickFormat(d3.format(".2s"));
 
 
-// set up svg
+// create responsive svg
 var svg = d3.select("#season-chart")
     .append("div")
     .classed("svg-container", true) //container class to make it responsive
@@ -45,10 +45,9 @@ var svg = d3.select("#season-chart")
 
 
 
-// load data
+// load data for barchart
 d3.json('js/arodbyseason.json', function(err, data) {
   dataset = data;
-
 
     color.domain(d3.keys(data[0]).filter(function(key) { return key !== "year";}));
 
@@ -57,7 +56,7 @@ d3.json('js/arodbyseason.json', function(err, data) {
       d.types = color.domain().map(function(type) { return {season: d.year, homeruns: d.homeruns, type: type, y0: y0, y1: y0 += +d[type]}; });
     });
 
-
+      // create tooltip
       var tip = d3.tip()
           .attr('class', 'd3-tip')
           .offset([-20, 0])
@@ -68,9 +67,11 @@ d3.json('js/arodbyseason.json', function(err, data) {
 
       svg.call(tip);
 
+      // set up x any domains
       x.domain(data.map(function(d) { return d.year; }));
       y.domain([0, d3.max(data, function(d) { return d.homeruns; })]);
 
+      // create barchart
       svg.append("g")
           .attr("class", "x axis")
           .attr("transform", "translate(0," + height + ")")
@@ -114,6 +115,7 @@ d3.json('js/arodbyseason.json', function(err, data) {
 
 });
 
+// define arc for pie charts
 var arc = d3.svg.arc()
     .outerRadius(radius)
     .innerRadius(0);
@@ -122,19 +124,23 @@ var labelArc = d3.svg.arc()
     .outerRadius(radius - 80)
     .innerRadius(radius - 80);
 
+// define data for pie charts
 var pie = d3.layout.pie()
     .sort(null)
     .value(function(d) { return d.homeruns; });
 
+// create svg for first pie chart
 var svg2 = d3.select("#team-chart").append("svg")
     .attr("width", width2)
     .attr("height", height2)
   .append("g")
     .attr("transform", "translate(" + width2 / 2 + "," + height2 / 2 + ")");
 
+// load data for first pie chart
 d3.json("js/arodbyteam.json", function(error, data) {
   if (error) throw error;
 
+  // create tooltip for first pie chart
   var tip2 = d3.tip()
       .attr('class', 'd3-tip')
       .offset([20, 0])
@@ -146,6 +152,7 @@ d3.json("js/arodbyteam.json", function(error, data) {
 
   svg2.call(tip2);
 
+  // create first pie chart
   var g = svg2.selectAll(".arc")
       .data(pie(data))
     .enter().append("g")
@@ -166,15 +173,18 @@ function type(d) {
   return d;
 }
 
+// create svg for second pie chart
 var svg3 = d3.select("#position-chart").append("svg")
     .attr("width", width2)
     .attr("height", height2)
   .append("g")
     .attr("transform", "translate(" + width2 / 2 + "," + height2 / 2 + ")");
 
+// load data for second pie chart
 d3.json("js/arodbyposition.json", function(error, data) {
   if (error) throw error;
 
+  // create tooltip for second pie chart
   var tip3 = d3.tip()
       .attr('class', 'd3-tip')
       .offset([20, 0])
@@ -186,6 +196,7 @@ d3.json("js/arodbyposition.json", function(error, data) {
 
   svg3.call(tip3);
 
+  // create second pie chart  
   var g = svg3.selectAll(".arc")
       .data(pie(data))
     .enter().append("g")

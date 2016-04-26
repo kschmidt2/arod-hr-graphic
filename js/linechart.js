@@ -3,8 +3,6 @@ var margin3 = {top: 20, right: 80, bottom: 30, left: 50},
     width3 = 860 - margin3.left - margin3.right,
     height3 = 400 - margin3.top - margin3.bottom;
 
-// var parseDate = d3.time.format("%Y").parse;
-
 // define scales
 var x3 = d3.scale.linear()
     .range([0, width3]);
@@ -32,6 +30,8 @@ var line = d3.svg.line()
     .y(function(d) { return y3(d.homeruns); })
     .defined(function(d) { return !isNaN(d.homeruns); });;
 
+
+// create responsive svg
 var svg4 = d3.select("#line-chart")
     .append("div")
     .classed("svg-container-line", true) //container class to make it responsive
@@ -64,7 +64,7 @@ d3.json('js/600club.json', function(error, data) {
     };
   });
 
-
+  // x and y domains
   x3.domain(d3.extent(data, function(d) { return d.age;}));
 
   y3.domain([
@@ -72,6 +72,7 @@ d3.json('js/600club.json', function(error, data) {
     d3.max(players, function(c) { return d3.max(c.values, function(v) { return v.homeruns; }); })
   ]);
 
+  // create tooltip
   var tipLine = d3.tip()
       .attr('class', 'd3-tip')
       .offset([-45, 0])
@@ -82,6 +83,7 @@ d3.json('js/600club.json', function(error, data) {
 
   svg4.call(tipLine);
 
+  // draw chart
   svg4.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + height3 + ")")
@@ -97,14 +99,12 @@ d3.json('js/600club.json', function(error, data) {
       .style("text-anchor", "end")
       .text("Home runs");
 
-
   var player = svg4.selectAll(".player")
       .data(players)
     .enter().append("g")
       .attr("class", "player");
 
-
-
+  // draw line
   player.append("path")
       .attr("class", "line")
       .attr("id", function(d) { return d.name; })
@@ -118,8 +118,8 @@ d3.json('js/600club.json', function(error, data) {
         d3.select(this).style("stroke", function(d) { return color3(d.name); });;
       });
 
+      // add dots and call tooltip
       player.selectAll(".player")
-          //.data(function (d) { return d.values; })
           .data(function(d) {
               return d.values.filter(function(j) { return !isNaN(j.homeruns) });
           })
@@ -133,16 +133,9 @@ d3.json('js/600club.json', function(error, data) {
             .on('mouseover', tipLine.show)
             .on('mouseout', tipLine.hide);
 
-
-  // player.append("text")
-  //     .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; })
-  //     .attr("transform", function(d) { return "translate(" + x(d.value.age) + "," + y(d.value.homeruns) + ")"; })
-  //     .attr("x", 3)
-  //     .attr("dy", ".35em")
-  //     .text(function(d) { return d.name; });
 });
 
-
+// toggle buttons
   $('#Rodriguez-button').on('click', function () {
     $().button('toggle');
     $('.Rodriguez').toggle();

@@ -1,6 +1,3 @@
-/*#3f4a6a*/
-
-
 body {
   font-family: 'Open Sans', sans-serif;
 }
@@ -190,6 +187,7 @@ h3 {
   color: #3f4b6a;
 }
 
+
 /*d3 styles*/
 
 .axis path,
@@ -274,6 +272,7 @@ circle:hover {
     margin-bottom: 20px;
 }
 
+/*styles for responsive svg*/
 .svg-content-responsive {
     display: inline-block;
     position: absolute;
