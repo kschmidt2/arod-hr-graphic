@@ -1,51 +1,59 @@
 // margins
-var margin = {top: 20, right: 80, bottom: 30, left: 50},
-    width = 860 - margin.left - margin.right,
-    height = 400 - margin.top - margin.bottom;
+var margin3 = {top: 20, right: 80, bottom: 30, left: 50},
+    width3 = 860 - margin3.left - margin3.right,
+    height3 = 400 - margin3.top - margin3.bottom;
+
+// var parseDate = d3.time.format("%Y").parse;
 
 // define scales
-var x = d3.time.scale()
-    .range([0, width]);
+var x3 = d3.scale.linear()
+    .range([0, width3]);
 
-var y = d3.scale.linear()
-    .range([height, 0]);
-
-// define colors
-var color = d3.scale.category10();
+var y3 = d3.scale.linear()
+    .range([height3, 0]);
 
 // define axis
-var xAxis = d3.svg.axis()
-    .scale(x)
+var xAxis3 = d3.svg.axis()
+    .scale(x3)
     .orient("bottom");
 
-var yAxis = d3.svg.axis()
-    .scale(y)
+var yAxis3 = d3.svg.axis()
+    .scale(y3)
     .orient("left");
 
 // define colors
-var color = d3.scale.ordinal()
+var color3 = d3.scale.ordinal()
 .domain(["Sosa","Thome","Griffey","Mays","Rodriguez","Ruth","Aaron","Bonds"])
 .range(["#bbb", "#bbb", "#bbb", "#bbb", "#0c152d", "#bbb", "#bbb", "#bbb"]);
 
 // define line
 var line = d3.svg.line()
-    .x(function(d) { return x(d.age); })
-    .y(function(d) { return y(d.homeruns); })
+    .x(function(d) { return x3(d.age); })
+    .y(function(d) { return y3(d.homeruns); })
     .defined(function(d) { return !isNaN(d.homeruns); });;
 
-var svg = d3.select("#line-chart").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+var svg4 = d3.select("#line-chart")
+    .append("div")
+    .classed("svg-container-line", true) //container class to make it responsive
+    .append("svg")
+    //responsive SVG needs these 2 attributes and no width and height attr
+    .attr("preserveAspectRatio", "xMinYMin meet")
+    .attr("viewBox", "0 0 800 500")
+    //class to make it responsive
+    .classed("svg-content-responsive", true)
   .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    .attr("transform", "translate(" + margin3.left + "," + margin3.top + ")");
 
 
 // load data
-d3.json('js/600club.json', function(err, data) {
-  dataset = data;
-
+d3.json('js/600club.json', function(error, data) {
+  if (error) throw error;
 
   color.domain(d3.keys(data[0]).filter(function(key) { return key !== "age"; }));
+
+  data.forEach(function(d) {
+    d.age = d.age;
+  });
 
   var players = color.domain().map(function(name) {
     return {
@@ -57,31 +65,31 @@ d3.json('js/600club.json', function(err, data) {
   });
 
 
-  x.domain(d3.extent(data, function(d) { return d.age;}));
+  x3.domain(d3.extent(data, function(d) { return d.age;}));
 
-  y.domain([
+  y3.domain([
     d3.min(players, function(c) { return d3.min(c.values, function(v) { return v.homeruns; }); }),
     d3.max(players, function(c) { return d3.max(c.values, function(v) { return v.homeruns; }); })
   ]);
 
   var tipLine = d3.tip()
       .attr('class', 'd3-tip')
-      .offset([300, -250])
+      .offset([-45, 0])
       .html(function(d) {
         console.log(d);
-        return "Player<br />Age:<br />Age:<br />Age:<br />Age:<br />Age:<br />Age:<br />Age:<br />Age:<br />Age:<br />Age:<br />Age:<br />Age:<br />Age:<br />Age:<br />Age:<br />Age:<br />Age:<br />Age:<br />Age:<br />Age:<br />Age:<br />";
+        return "<p style='margin-bottom:5px;'><strong>" + d.name + "</strong></p><p style='margin-bottom:5px;'><strong>Age:</strong> " + d.age + "</p><p style='margin-bottom:5px;'><strong>HR:</strong> " + d.homeruns + "</p>";
       })
 
-  svg.call(tipLine);
+  svg4.call(tipLine);
 
-  svg.append("g")
+  svg4.append("g")
       .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
-      .call(xAxis);
+      .attr("transform", "translate(0," + height3 + ")")
+      .call(xAxis3);
 
-  svg.append("g")
+  svg4.append("g")
       .attr("class", "y axis")
-      .call(yAxis)
+      .call(yAxis3)
     .append("text")
       .attr("transform", "rotate(-90)")
       .attr("y", 6)
@@ -89,7 +97,8 @@ d3.json('js/600club.json', function(err, data) {
       .style("text-anchor", "end")
       .text("Home runs");
 
-  var player = svg.selectAll(".player")
+
+  var player = svg4.selectAll(".player")
       .data(players)
     .enter().append("g")
       .attr("class", "player");
@@ -99,23 +108,27 @@ d3.json('js/600club.json', function(err, data) {
   player.append("path")
       .attr("class", "line")
       .attr("d", function(d) { return line(d.values); })
-      .style("stroke", function(d) { return color(d.name); })
-      .style("fill", "none")
+      .style("stroke", function(d) { return color3(d.name); })
+      // .style("fill", "none")
       .on('mouseover', function(){
         d3.select(this).style({"stroke":"#97a6c4"});;
-        tipLine.show(this);
       })
       .on('mouseout', function(){
-        d3.select(this).style("stroke", function(d) { return color(d.name); });;
-        tipLine.hide(this);
+        d3.select(this).style("stroke", function(d) { return color3(d.name); });;
       });
 
       player.selectAll(".player")
-            .data(data.filter(function(d) { return !isNaN(d.homeruns); }))
-        .enter().append("circle")
-            .attr("r", 2)
+          .data(function (d) { return d.values; })
+          // .data(data.filter(function(d) { return !isNaN(d.homeruns); }))
+      		.enter().append("circle")
+      			.attr("class", "dot")
+      	    .attr("r", 4)
             .attr("cx", line.x())
             .attr("cy", line.y())
+            // .defined(function(d) { return !isNaN(d.homeruns); })
+      			.style("stroke", "#3f4b6a")
+      			.style("fill-opacity", "0")
+      			.style("stroke-width", "1px")
             .on('mouseover', tipLine.show)
             .on('mouseout', tipLine.hide);
 
@@ -127,75 +140,3 @@ d3.json('js/600club.json', function(err, data) {
   //     .attr("dy", ".35em")
   //     .text(function(d) { return d.name; });
 });
-
-
-    // color.domain(d3.keys(data[0]).filter(function(key) { return key !== "season" && key !== "velocity";}));
-    //
-    //   data.forEach(function(d) {
-    //     var y0 = 0;
-    //     d.total = d.swinging + d.looking;
-    //     d.types = color.domain().map(function(type) { return {season: d.season, looking: d.looking, swinging: d.swinging, total: d.total, type: type, y0: y0, y1: y0 += +d[type]}; });
-    //     d.season = +d.season;
-    //     d.velocity = +d.velocity;
-    //   });
-
-      // var legend = svg.selectAll(".legend")
-      //     .data(color.domain().slice().reverse())
-      //   .enter().append("g")
-      //     .attr("class", "legend")
-      //     .attr("transform", function(d, i) { return "translate(-670," + i * 20 + ")"; });
-      //
-      // legend.append("rect")
-      //     .attr("x", width - 18)
-      //     .attr("width", 18)
-      //     .attr("height", 18)
-      //     .attr("class", color);
-      //
-      // legend.append("text")
-      //     .attr("x", width + 6)
-      //     .attr("y", 9)
-      //     .attr("dy", ".35em")
-      //     .text(function(d) { return d; });
-
-      // line chart
-
-//       var tipLine = d3.tip()
-//           .attr('class', 'd3-tip')
-//           .offset([-10, 0])
-//           .html(function(d) {
-//             // console.log(d);
-//             return "<strong>Age:</strong> " + d.age + "<br /><strong>HR:</strong> " + d.Rodriguez;
-//           })
-//
-//       svg.call(tipLine);
-//
-//       svg.append("path")
-//           .attr("class", "line")
-//           .attr("d", valueline(data));
-//
-//       svg.selectAll("dot")
-//             .data(data.filter(function(d) { return !isNaN(d.Rodriguez); }))
-//         .enter().append("circle")
-//             .attr("r", 7)
-//             .attr("cx", valueline.x())
-//             .attr("cy", valueline.y())
-//             .on('mouseover', tipLine.show)
-//             .on('mouseout', tipLine.hide);
-//
-//         // Add the Y Axis
-//         svg.append("g")
-//             .attr("class", "y axis")
-//             .attr("transform", "translate(" + width + " ,0)")
-//             .call(yAxis)
-//             .style("fill", "#dc5357")
-//             .style("font-weight", 700)
-//           .append("text")
-//             .attr("transform", "rotate(90)")
-//             .attr("y", 4)
-//             .attr("dy", ".71em")
-//             .style("font-size", 9)
-//             .style("font-weight", 700)
-//             .style("text-transform", "uppercase")
-//             .style("fill", "#dc5357")
-//             .text("Velocity (mph)");
-// });
