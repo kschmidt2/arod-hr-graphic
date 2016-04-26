@@ -59,7 +59,7 @@ d3.json('js/600club.json', function(error, data) {
     return {
       name: name,
       values: data.map(function(d) {
-        return {age: d.age, homeruns: +d[name]};
+        return {name: name, age: d.age, homeruns: +d[name]};
       })
     };
   });
@@ -107,6 +107,7 @@ d3.json('js/600club.json', function(error, data) {
 
   player.append("path")
       .attr("class", "line")
+      .attr("id", function(d) { return d.name; })
       .attr("d", function(d) { return line(d.values); })
       .style("stroke", function(d) { return color3(d.name); })
       // .style("fill", "none")
@@ -118,16 +119,19 @@ d3.json('js/600club.json', function(error, data) {
       });
 
       player.selectAll(".player")
-          .data(function (d) { return d.values; })
-          // .data(data.filter(function(d) { return !isNaN(d.homeruns); }))
+          //.data(function (d) { return d.values; })
+          .data(function(d) {
+              return d.values.filter(function(j) { return !isNaN(j.homeruns) });
+          })
       		.enter().append("circle")
       			.attr("class", "dot")
+            .attr("class", function(d) { return d.name; })
       	    .attr("r", 4)
             .attr("cx", line.x())
             .attr("cy", line.y())
             // .defined(function(d) { return !isNaN(d.homeruns); })
-      			.style("stroke", "#3f4b6a")
-      			.style("fill-opacity", "0")
+      			.style("stroke", "#0c152d")
+      			.style("fill", "white")
       			.style("stroke-width", "1px")
             .on('mouseover', tipLine.show)
             .on('mouseout', tipLine.hide);
@@ -140,3 +144,45 @@ d3.json('js/600club.json', function(error, data) {
   //     .attr("dy", ".35em")
   //     .text(function(d) { return d.name; });
 });
+
+
+  $('#Rodriguez-button').on('click', function () {
+    $().button('toggle');
+    $('.Rodriguez').toggle();
+    $('#Rodriguez').toggle()
+  });
+  $('#Sosa-button').on('click', function () {
+    $().button('toggle');
+    $('.Sosa').toggle();
+    $('#Sosa').toggle()
+  });
+  $('#Thome-button').on('click', function () {
+    $().button('toggle');
+    $('.Thome').toggle();
+    $('#Thome').toggle()
+  });
+  $('#Griffey-button').on('click', function () {
+    $().button('toggle');
+    $('.Griffey').toggle();
+    $('#Griffey').toggle()
+  });
+  $('#Mays-button').on('click', function () {
+    $().button('toggle');
+    $('.Mays').toggle();
+    $('#Mays').toggle()
+  });
+  $('#Ruth-button').on('click', function () {
+    $().button('toggle');
+    $('.Ruth').toggle();
+    $('#Ruth').toggle()
+  });
+  $('#Aaron-button').on('click', function () {
+    $().button('toggle');
+    $('.Aaron').toggle();
+    $('#Aaron').toggle()
+  });
+  $('#Bonds-button').on('click', function () {
+    $().button('toggle');
+    $('.Bonds').toggle();
+    $('#Bonds').toggle()
+  });

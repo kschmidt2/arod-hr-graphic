@@ -97,16 +97,19 @@
             <div class="row show-grid">
               <div class="col-xs-12 col-sm-9">
                 <h3>Rodriguez's home runs by season</h3>
+                <p class="description-text">Rodriguez's home run production peaked during his years in Texas. Hover over the chart to view his home runs by season.</p>
                 <div id="season-chart"></div>
               </div>
               <div class="col-xs-12 col-sm-3">
                 <div class="row">
                   <div class="col-xs-6 col-sm-12">
                     <h3>Rodriguez's home runs by team</h3>
+                    <p class="description-text">Rodriguez has played for the Mariners, Rangers and Yankees. Hover over the chart to view his home runs by team.</p>
                     <div id="team-chart"></div>
                   </div>
                   <div class="col-xs-6 col-sm-12">
-                    <h3>Rodriguez's home runs by position</h3>
+                    <h3 class="pie-head">Rodriguez's home runs by position</h3>
+                    <p class="description-text">Rodriguez has spent time as a shortstop, third baseman and DH. Hover over the chart to view his home runs by position.</p>
                     <div id="position-chart"></div>
                   </div>
                 </div>
@@ -115,12 +118,25 @@
           </div>
           <div class="col-xs-12 col-sm-12">
             <h3 style="margin-top:20px;">The 600 Home Run Club: Cumulative home runs by age</h3>
+            <p class="description-text">Rodriguez seemed destined to pass Bonds for first on the all-time list before injuries and a PED suspension derailed his climb. Hover over the dots to view home run totals by age for each member of the 600 Home Run Club and use the buttons to toggle lines on and off.</p>
+
+            <div class="row" id="buttons" style="margin-top:20px;margin-bottom:0;">
+                <button type="button" class="btn btn-primary active" id="Rodriguez-button" data-toggle="button" aria-pressed="true" autocomplete="off">Rodriguez</button>
+                <button type="button" class="btn btn-primary active" id="Sosa-button" data-toggle="button" aria-pressed="true" autocomplete="off">Sosa</button>
+                <button type="button" class="btn btn-primary active" id="Thome-button" data-toggle="button" aria-pressed="true" autocomplete="off">Thome</button>
+                <button type="button" class="btn btn-primary active" id="Griffey-button" data-toggle="button" aria-pressed="true" autocomplete="off">Griffey</button>
+                <button type="button" class="btn btn-primary active" id="Mays-button" data-toggle="button" aria-pressed="true" autocomplete="off">Mays</button>
+                <button type="button" class="btn btn-primary active" id="Ruth-button" data-toggle="button" aria-pressed="true" autocomplete="off">Ruth</button>
+                <button type="button" class="btn btn-primary active" id="Aaron-button" data-toggle="button" aria-pressed="true" autocomplete="off">Aaron</button>
+                <button type="button" class="btn btn-primary active Bonds-button" data-toggle="button" aria-pressed="true" autocomplete="off">Bonds</button>
+            </div>
+
             <div id="line-chart"></div>
           </div>
         </div>
 
         <div id="footer">
-          Charts by <a href="http://kierstenschmidt.com" target="blank">Kiersten Schmidt</a>. Created using AngularJS and d3js. Data from <a href="http://baseball-reference.com" target="blank">Baseball Reference</a>. Photo via AP.
+          Charts by <a href="http://kierstenschmidt.com" target="blank">Kiersten Schmidt</a>. Created using AngularJS and d3js. Data through April 26, 2016, from <a href="http://baseball-reference.com" target="blank">Baseball Reference</a>. Photo via AP.
         </div>
 
       </div>
@@ -138,6 +154,8 @@
         <script src="js/barchart.js"></script>
         <!-- d3 linechart -->
         <script src="js/linechart.js"></script>
+        <!-- bootstrap -->
+        <script src="js/bootstrap.min.js"></script>
 
     </body>
 </html>

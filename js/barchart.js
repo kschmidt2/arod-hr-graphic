@@ -1,7 +1,7 @@
 // margins
 var margin = {top: 20, right: 70, bottom: 30, left: 90},
     width = 700 - margin.left - margin.right,
-    height = 400 - margin.top - margin.bottom,
+    height = 510 - margin.top - margin.bottom,
 
     width2 = 150,
     height2 = 150,

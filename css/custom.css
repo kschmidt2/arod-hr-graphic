@@ -115,7 +115,7 @@ h2 {
   margin-top: -15px;
 }
 
-.btn-default {
+.btn-default, .btn-primary {
   font-size: 14px;
   text-transform: uppercase;
   color: #0c152d;
@@ -123,12 +123,19 @@ h2 {
   border-radius: 0;
   margin-top: 5px;
   margin-bottom: 5px;
+  background: none;
 }
 
-.btn-default:hover {
+.btn-default:hover, .btn-primary:hover, .btn-primary.active:hover {
   color: #fff;
   border: 1px solid #0c152d;
   background-color: #0c152d;
+}
+
+.btn-primary.active {
+  color: #0c152d;
+  border: 1px solid #0c152d;
+  background: #eee;
 }
 
 .input-group {
@@ -146,6 +153,26 @@ h3 {
   color: #0c152d;
   font-weight: 300;
 }
+
+.description-text {
+  font-size: 13px;
+  font-style: italic;
+}
+
+#footer {
+  border-top: 1px solid #666;
+  font-style: italic;
+  font-size: 10px;
+  padding-top: 5px;
+  text-align: right;
+  color: #666;
+}
+
+#footer a {
+  color: #3f4b6a;
+}
+
+/*d3 styles*/
 
 .axis path,
 .axis line {
@@ -172,6 +199,10 @@ h3 {
 }
 
 .pie-chart {
+  margin-top: 20px;
+}
+
+.pie-head {
   margin-top: 20px;
 }
 
@@ -208,7 +239,7 @@ h3 {
     display: inline-block;
     position: relative;
     width: 100%;
-    padding-bottom: 70%; /* aspect ratio */
+    padding-bottom: 90%; /* aspect ratio */
     vertical-align: top;
     overflow: hidden;
     margin-bottom: 20px;
@@ -231,22 +262,9 @@ h3 {
     margin-bottom: 20px;
 }
 
-#footer {
-  border-top: 1px solid #666;
-  font-style: italic;
-  font-size: 10px;
-  padding-top: 5px;
-  text-align: right;
-  color: #666;
-}
-
-#footer a {
-  color: #3f4b6a;
-}
 
 
-
-
+/*media queries*/
 
 @media screen and (min-width: 768px) {
   .jumbotron h1 {
@@ -276,14 +294,6 @@ h3 {
     color: white;
     margin-top: 70vh;
   }
-  h1 {
-    text-transform: uppercase;
-    font-weight: 400;
-    font-size: 55px;
-    line-height: 47px;
-    letter-spacing: 0px;
-  }
-
   h2 {
     font-family: 'Roboto Slab', serif;
     font-weight: 400;
@@ -291,4 +301,28 @@ h3 {
     font-size: 20px;
     line-height: 16px;
   }
+  .pie-head {
+    margin-top: 0px;
+  }
 }
+
+@media screen and (max-width: 374px) {
+  h1 {
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 45px;
+    line-height: 40px;
+    letter-spacing: 0px;
+  }
+}
+
+@media screen and (min-width: 375px) and (max-width: 414px)
+ {
+   h1 {
+     text-transform: uppercase;
+     font-weight: 400;
+     font-size: 55px;
+     line-height: 47px;
+     letter-spacing: 0px;
+   }
+ }
