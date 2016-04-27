@@ -1,6 +1,6 @@
 # Alex Rodriguez: 689 home runs and counting #
 
-## A data visualiztion project using Angular, DS and express. ##
+## A data visualiztion project using Angular, D3 and express. ##
 
 
 To install the application:
@@ -16,4 +16,4 @@ node index.js
 
 Navigate to http://localhost:8080 in your browser
 
-<a href="http://kierstenschmidt.com/583/arodhr-graphic/" target="blank">View this project live</a> 
+<a href="http://kierstenschmidt.com/583/arodhr-graphic/" target="blank">View this project live</a>
