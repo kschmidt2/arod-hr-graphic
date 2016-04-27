@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+        <title>Alex Rodriguez's 689 home runs</title>
+
+        <!-- css -->
+        <link rel="stylesheet" href="css/bootstrap.css" />
+        <link rel="stylesheet" href="css/angular-tooltip.css" />
+        <link rel="stylesheet" href="css/custom.css" />
+        <link href='https://fonts.googleapis.com/css?family=Oswald:400,300,700|Roboto+Slab:400,300|Open+Sans:300,400,700,400italic' rel='stylesheet' type='text/css'>        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+        <!-- favicon -->
+        <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+
+        <!-- jquery -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+        <!-- angular -->
+        <script src="js/angular.min.js"></script>
+    </head>
+
+    <!-- <body ng-app="myApp"> -->
+    <body ng-app="myApp">
+
+      <div class="jumbotron hidden-xs">
+        <div class="jumbotron-container">
+          <div class="headline">
+            <h1>Alex</br /><span class="rod">Rodriguez</span></h1>
+            <h2>689 home runs and counting</h2>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="mobile-jumbotron">
+        <div class="mobile-headline">
+          <h1>Alex</br /><span class="rod">Rodriguez</span></h1>
+          <h2>689 home runs and counting</h2>
+        </div>
+      </div> -->
+
+      <img src="images/arodcover_small.jpg" class="img-responsive hidden-sm hidden-md hidden-lg hidden-xl">
+
+      <div class="mobile-headline hidden-sm hidden-md hidden-lg hidden-xl">
+        <h1>Alex</br />Rodriguez</h1>
+        <h2>689 home runs and counting</h2>
+      </div>
+
+      <div class="container">
+
+        <p class="intro">
+          Alex Rodriguez currently sits in fourth place on the all-time home run list behind Barry Bonds, Hank Aaron and Babe Ruth. The Yankee designated hitter has a chance to pass Ruth before his career ends following the 2018 season, but will need to do some work to catch Aaron or Bonds. The chart below shows all of Rodriguez's career home runs. <span class="hidden-xs">Hover over the dots to view details about each home run and click</span><span class="hidden-sm hidden-md hidden-lg hidden-xl">Click</span> the buttons below to filter the home runs by type or team.
+        </p>
+
+        <div class="legend">
+          <ul>
+            <li class="legend-items"><div class="dot rbi1"></div>solo</span>
+            <li class="legend-items"><div class="dot rbi2"></div>two-run</span>
+            <li class="legend-items"><div class="dot rbi3"></div>three-run</span>
+            <li class="legend-items"><div class="dot rbi4"></div>grand slam</span>
+          </ul>
+        </div>
+
+        <div id="dot-chart" ng-controller="ARodController as arod">
+
+          <div class="row" id="buttons">
+              <button class="btn btn-default" type="submit" ng-click="myFilter = {}">All HR</button>
+              <button class="btn btn-default" type="submit" ng-click="myFilter = {rbi: '1'}">Solo HR</button>
+              <button class="btn btn-default" type="submit" ng-click="myFilter = {rbi: '2'}">Two-run HR</button>
+              <button class="btn btn-default" type="submit" ng-click="myFilter = {rbi: '3'}">three-run HR</button>
+              <button class="btn btn-default" type="submit" ng-click="myFilter = {rbi: '4'}">Grand slams</button>
+              <button class="btn btn-default" type="submit" ng-click="myFilter = {team: 'SEA'}">SEA HR</button>
+              <button class="btn btn-default" type="submit" ng-click="myFilter = {team: 'TEX'}">TEX HR</button>
+              <button class="btn btn-default" type="submit" ng-click="myFilter = {team: 'NYY'}">NYY HR</button>
+          </div>
+
+          <form>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-addon"><i class="fa fa-search"></i></div>
+
+                <input type="text" class="form-control" placeholder="Search by team, opposing pitcher or year" ng-model="searchHomeruns">
+
+              </div>
+            </div>
+          </form>
+
+          <div id="many-dots">
+
+            <div class="dot rbi{{homerun.rbi}}" ng-repeat="homerun in arod.homeruns | filter:myFilter | filter: searchHomeruns" tooltips
+            tooltip-template="
+              <b>HR number:</b> {{homerun.hrnumber}}<br />
+              <b>Date:</b> {{homerun.date  | date :cshortDate}}<br />
+              <b>Team:</b> {{homerun.team}}<br />
+              <b>Opponent:</b> {{homerun.opponent}}<br />
+              <b>Opposing pitcher:</b> {{homerun.pitcher}}<br />
+              <b>Score:</b> {{homerun.score}}<br />
+              <b>Inning:</b> {{homerun.inning}}<br />
+              <b>Outs:</b> {{homerun.out}}<br />
+            ">
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="row charts">
+          <div class="col-xs-12 col-sm-12">
+            <div class="row">
+              <div class="col-xs-12 col-sm-9">
+                <h3>Rodriguez's home runs by season</h3>
+                <p class="description-text">Rodriguez's home run production peaked during his years in Texas. <span class="hidden-xs">Hover over</span><span class="hidden-sm hidden-md hidden-lg hidden-xl">Click on</span> the chart to view his home runs by season.</p>
+                <div id="season-chart"></div>
+              </div>
+              <div class="col-xs-12 col-sm-3">
+                <div class="row">
+                  <div class="col-xs-6 col-sm-12">
+                    <h3>Rodriguez's home runs by team</h3>
+                    <p class="description-text">Rodriguez has played for the Mariners, Rangers and Yankees. <span class="hidden-xs">Hover over</span><span class="hidden-sm hidden-md hidden-lg hidden-xl">Click on</span> the chart to view his home runs by team.</p>
+                    <div id="team-chart"></div>
+                  </div>
+                  <div class="col-xs-6 col-sm-12">
+                    <h3 class="pie-head">Rodriguez's home runs by position</h3>
+                    <p class="description-text">Rodriguez has spent time as a shortstop, third baseman and DH. <span class="hidden-xs">Hover over</span><span class="hidden-sm hidden-md hidden-lg hidden-xl">Click on</span> the chart to view his home runs by position.</p>
+                    <div id="position-chart"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-12">
+            <h3 style="margin-top:20px;">The 600 Home Run Club: Cumulative home runs by age</h3>
+            <p class="description-text">Rodriguez seemed destined to pass Bonds for first on the all-time list before injuries and a PED suspension derailed his climb. <span class="hidden-xs">Hover over</span><span class="hidden-sm hidden-md hidden-lg hidden-xl">Click on</span> the dots to view home run totals by age for each member of the 600 Home Run Club and use the buttons to toggle lines on and off.</p>
+
+            <div class="row" id="buttons" style="margin-top:20px;margin-bottom:0;">
+                <button type="button" class="btn btn-primary active" id="Rodriguez-button" data-toggle="button" aria-pressed="true" autocomplete="off">Rodriguez</button>
+                <button type="button" class="btn btn-primary active" id="Sosa-button" data-toggle="button" aria-pressed="true" autocomplete="off">Sosa</button>
+                <button type="button" class="btn btn-primary active" id="Thome-button" data-toggle="button" aria-pressed="true" autocomplete="off">Thome</button>
+                <button type="button" class="btn btn-primary active" id="Griffey-button" data-toggle="button" aria-pressed="true" autocomplete="off">Griffey</button>
+                <button type="button" class="btn btn-primary active" id="Mays-button" data-toggle="button" aria-pressed="true" autocomplete="off">Mays</button>
+                <button type="button" class="btn btn-primary active" id="Ruth-button" data-toggle="button" aria-pressed="true" autocomplete="off">Ruth</button>
+                <button type="button" class="btn btn-primary active" id="Aaron-button" data-toggle="button" aria-pressed="true" autocomplete="off">Aaron</button>
+                <button type="button" class="btn btn-primary active" id="Bonds-button" data-toggle="button" aria-pressed="true" autocomplete="off">Bonds</button>
+            </div>
+
+            <div id="line-chart"></div>
+          </div>
+        </div>
+
+        <div id="footer">
+          Charts by <a href="http://kierstenschmidt.com" target="blank">Kiersten Schmidt</a>. Created using AngularJS and d3js. Data through April 26, 2016, from <a href="http://baseball-reference.com" target="blank">Baseball Reference</a>. Photo via AP.
+        </div>
+
+      </div>
+
+
+        <!-- myApp -->
+        <script src="js/angular-tooltip.min.js"></script>
+        <script src="js/app.js"></script>
+
+        <!-- d3 library -->
+        <script src="js/d3.min.js"></script>
+        <!-- d3 tooltip -->
+        <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+        <!-- d3 barchart and pie charts -->
+        <script src="js/barchart.js"></script>
+        <!-- d3 linechart -->
+        <script src="js/linechart.js"></script>
+        <!-- bootstrap -->
+        <script src="js/bootstrap.min.js"></script>
+
+    </body>
+</html>
