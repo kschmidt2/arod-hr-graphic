@@ -15,3 +15,5 @@ Start the server:
 node index.js
 
 Navigate to http://localhost:8080 in your browser
+
+<a href="http://kierstenschmidt.com/583/arodhr-graphic/" target="blank">View this project live</a> 
